@@ -1,143 +1,14 @@
 import React from "react";
+import { FetchACList } from "../state/ac";
 import './dashboard.css';
-const  Dashboard = () => {
-    let acData = [
-        {
-            id: 1,
-            status: "Active",
-            temperature: "25",
-        },
-        {
-            id: 2,
-            status: "Active",
-            temperature: "25",
-        },
-        {
-            id: 3,
-            status: "Active",
-            temperature: "25",
-        },
-        //  {
-        //     id: 1,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 2,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 3,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        //  {
-        //     id: 1,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 2,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 3,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        //  {
-        //     id: 1,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 2,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 3,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 1,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 2,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 3,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 1,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 2,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 3,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 1,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 2,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 3,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 1,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 2,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 3,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 1,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 2,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-        // {
-        //     id: 3,
-        //     status: "Active",
-        //     temperature: "25",
-        // },
-    ]
+const  Dashboard = async () => {
+    // Fetch AC data from backend
+    let acDataRes = await FetchACList();
+    acDataRes.ACData.map((item) => {
+        item.status = item.status === 1 ? 'on' : 'off';
+    })
+    let acData = acDataRes.ACData;
+    
     return (
        <div className="dashboard" style={{ backgroundColor: '#d12345', color: '#ffffff' }}>
     <div className="ac">
@@ -152,8 +23,8 @@ const  Dashboard = () => {
                 </thead>
                 <tbody className="ac_table_body">
                     {acData.map((item) => (
-                        <tr key={item.id}>
-                            <td>{item.id}</td>
+                        <tr key={item.ac_number}>
+                            <td>{item.ac_number}</td>
                             <td>{item.status}</td>
                             <td>{item.temperature}</td>
                         </tr>
