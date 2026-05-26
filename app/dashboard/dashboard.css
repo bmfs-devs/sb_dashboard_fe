@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+.dashboard {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 20px;
+    height: 100vh;
+}
+
+.ac {
+    width: 50%;
+}
+
+/* 1. Set the fixed height and scroll settings on the container */
+.table-container {
+    
+    height: 75%;
+    overflow-y: auto;     /* Enables vertical scrolling */
+    border: 5px solid rgba(255, 255, 255, 0.1);
+}
+
+.ac_table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Keeps headers and body aligned perfectly */
+}
+
+/* 2. Make the table headers stick to the top of the scroll container */
+.ac_table th {
+    position: sticky;
+    top: 0;
+    background-color:blue; /* MUST match your dashboard background color so rows look like they disappear underneath */
+    z-index: 1;                /* Keeps headers layered above the scrolling text */
+
+}
+
+.ac_table th, 
+.ac_table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ac_table_body {
+    background-color: green;
+}
+
+.dummy {
+    background-color: #4a148c;
+    color: #291f1f;
+    width: 50%;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 576px) {
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .ac {
+        width: 100%;
+        height: 50%;
+    }
+    .dummy {
+        width: 100%;
+        height: 50%;
+    }
+}
